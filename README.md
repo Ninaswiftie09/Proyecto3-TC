@@ -80,7 +80,7 @@ Esta MT toma la cadena original y genera su versión invertida en la misma cinta
 ## Notas finales
 - El simulador funciona únicamente para Máquinas de Turing de una cinta, como lo solicita el proyecto.
 - La arquitectura se diseñó para ser clara y modular, cumpliendo con todos los requisitos de parsing, ejecución y visualización de IDs.
-- Para cambiar de máquina o modificar el lenguaje a reconocer, únicamente se edita el archivo `mt.yaml`.
+- Para cambiar de máquina o modificar el lenguaje a reconocer, se debe escoger entre los 2 archivos .yaml.
 
 ## Enlace del vídeo de Youtube
 - 
