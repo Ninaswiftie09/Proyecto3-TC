@@ -1,0 +1,183 @@
+mt:
+  states: [q0, q1, q2, q3, q4, q5, q6, qf]
+  input_alphabet: [a, b]
+  tape_alphabet: [a, b, X, B]
+  initial_state: q0
+  accept_states: [qf]
+
+  transitions:
+
+    # q0: Ir al final de la cinta
+    - state: q0
+      read: [a]
+      write: [a]
+      move: R
+      next: q0
+
+    - state: q0
+      read: [b]
+      write: [b]
+      move: R
+      next: q0
+
+    - state: q0
+      read: [X]
+      write: [X]
+      move: R
+      next: q0
+
+    - state: q0
+      read: [B]
+      write: [B]
+      move: L
+      next: q1
+
+    # q1: Buscar último símbolo sin marcar
+    - state: q1
+      read: [X]
+      write: [X]
+      move: L
+      next: q1
+
+    - state: q1
+      read: [a]
+      write: [X]
+      move: R
+      next: q2
+
+    - state: q1
+      read: [b]
+      write: [X]
+      move: R
+      next: q3
+
+    - state: q1
+      read: [B]
+      write: [B]
+      move: R
+      next: q5
+
+    # q2: Copiar 'a' al final
+    - state: q2
+      read: [X]
+      write: [X]
+      move: R
+      next: q2
+
+    - state: q2
+      read: [a]
+      write: [a]
+      move: R
+      next: q2
+
+    - state: q2
+      read: [b]
+      write: [b]
+      move: R
+      next: q2
+
+    - state: q2
+      read: [B]
+      write: [a]
+      move: L
+      next: q4
+
+    # q3: Copiar 'b'
+    - state: q3
+      read: [X]
+      write: [X]
+      move: R
+      next: q3
+
+    - state: q3
+      read: [a]
+      write: [a]
+      move: R
+      next: q3
+
+    - state: q3
+      read: [b]
+      write: [b]
+      move: R
+      next: q3
+
+    - state: q3
+      read: [B]
+      write: [b]
+      move: L
+      next: q4
+
+    # q4: Regresar a la zona marcada
+    - state: q4
+      read: [a]
+      write: [a]
+      move: L
+      next: q4
+
+    - state: q4
+      read: [b]
+      write: [b]
+      move: L
+      next: q4
+
+    - state: q4
+      read: [X]
+      write: [X]
+      move: L
+      next: q4
+
+    - state: q4
+      read: [B]
+      write: [B]
+      move: R
+      next: q1
+
+    # q5: Limpiar marcas X → B
+    - state: q5
+      read: [X]
+      write: [B]
+      move: R
+      next: q5
+
+    - state: q5
+      read: [a]
+      write: [a]
+      move: R
+      next: q5
+
+    - state: q5
+      read: [b]
+      write: [b]
+      move: R
+      next: q5
+
+    - state: q5
+      read: [B]
+      write: [B]
+      move: L
+      next: q6
+
+    # q6: Regresar al inicio
+    - state: q6
+      read: [a]
+      write: [a]
+      move: L
+      next: q6
+
+    - state: q6
+      read: [b]
+      write: [b]
+      move: L
+      next: q6
+
+    - state: q6
+      read: [B]
+      write: [B]
+      move: R
+      next: qf
+
+  inputs:
+    - "aaabb"
+    - "abaabba"
+    - "bbbbba"
+    - "abbabba"

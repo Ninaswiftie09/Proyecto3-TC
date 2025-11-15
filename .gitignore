@@ -1,0 +1,36 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+*.log
+
+# Byte-compiled
+*.pyc
+
+# --- Virtualenv ---
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# --- VSCode ---
+.vscode/
+
+# --- Sistemas Operativos ---
+.DS_Store
+Thumbs.db
+
+# --- Archivos generados ---
+*.tmp
+*.swp
+*.bak
+
+# --- Reportes o pruebas locales ---
+*.out
+*.txt~

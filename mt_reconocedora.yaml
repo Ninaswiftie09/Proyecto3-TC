@@ -1,0 +1,98 @@
+mt:
+  states: [q0, q1, q2, q3, qf]
+  input_alphabet: [a, b]
+  tape_alphabet: [a, b, X, Y, B]
+  initial_state: q0
+  accept_states: [qf]
+
+  transitions:
+    # q0: buscar el primer 'a'
+    - state: q0
+      read: [a]
+      write: [X]
+      move: R
+      next: q1
+
+    # si encuentra un Y o X, seguir moviendo
+    - state: q0
+      read: [X]
+      write: [X]
+      move: R
+      next: q0
+
+    - state: q0
+      read: [Y]
+      write: [Y]
+      move: R
+      next: q0
+
+    # si encuentra B en q0 -> todas las parejas fueron marcadas
+    - state: q0
+      read: [B]
+      write: [B]
+      move: L
+      next: qf
+
+    # q1: mover hasta encontrar el primer 'b'
+    - state: q1
+      read: [a]
+      write: [a]
+      move: R
+      next: q1
+
+    - state: q1
+      read: [X]
+      write: [X]
+      move: R
+      next: q1
+
+    - state: q1
+      read: [Y]
+      write: [Y]
+      move: R
+      next: q1
+
+    # Encontró su 'b' correspondiente
+    - state: q1
+      read: [b]
+      write: [Y]
+      move: L
+      next: q2
+
+    # q2: regresar al inicio para procesar otra vez
+    - state: q2
+      read: [a]
+      write: [a]
+      move: L
+      next: q2
+
+    - state: q2
+      read: [b]
+      write: [b]
+      move: L
+      next: q2
+
+    - state: q2
+      read: [X]
+      write: [X]
+      move: L
+      next: q2
+
+    - state: q2
+      read: [Y]
+      write: [Y]
+      move: L
+      next: q2
+
+    # al regresar al B (inicio), continuar desde q0
+    - state: q2
+      read: [B]
+      write: [B]
+      move: R
+      next: q0
+
+  inputs:
+    - "aaabbb"   # aceptada
+    - "aabbb"    # rechazada
+    - "aaabb"    # rechazada
+    - "aaaabbbb" # aceptada
