@@ -3,6 +3,10 @@
 ## Integrantes
 - **Nina Nájera — 231088**
 - **Jorge Palacios — 231385**
+  
+## Link al video explicativo 
+
+https://youtu.be/hssKuYobyHw 
 
 ## Descripción del proyecto
 En este proyecto se implementó un simulador de Máquina de Turing de una cinta, capaz de leer una definición formal en un archivo YAML, cargar su conjunto de estados, alfabeto, transiciones y entradas, y luego ejecutar cada cadena paso por paso.
